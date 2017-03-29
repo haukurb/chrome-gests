@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+<head>
+	<title>Glyph box test site</title>
+	<style>
+		*{
+			font-family: 'Segoe UI', Tahoma, sans-serif;
+		}
+
+		div {
+			box-sizing: border-box;
+			display: block;
+		}
+
+		body {
+			/*height: 2000px;*/
+			background-color: #efefef;
+			border: 1px solid #bdbdbd;
+			margin: 20px auto 0;
+			max-width: 800px;
+			min-width: 600px;
+			width: 60%;
+		}
+
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+			position: relative;
+			top: -15px;
+		}
+
+		.wrapper {
+			/*margin: 1% 2% 1% 2%;*/
+			background-color: #fff;
+			margin: 0px auto;
+		}
+
+		.header {
+			background-color: #ddd;
+			text-align: center;
+			padding: 1em 0 1em 0;
+			min-height: 2em;
+		}
+
+		.content {
+			padding: 0em 3em 3em 3em;
+		}
+
+		.settings-form {
+			/*padding: 1% 4% 1% 4%;*/
+			padding: 0 4% 1% 4%;
+		}
+
+		.settings-row {
+			margin: 1em 0 3em 0;
+		}
+
+		.settings-row:after {
+			clear: both;
+			content: "";
+			display: table;
+		}
+
+		.settings-name {
+			position: relative;
+			top: -3px;
+			float: left;
+			width: 150px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.settings-value {
+			float: left;
+		}
+
+		.settings-value-primary {
+			margin-bottom: 1.5em;
+		}
+
+		.input-type-a {
+			width: 7em;
+			text-align: center;
+		}
+
+		label {
+			margin-left: 4em;
+		}
+
+		.path-demo {
+			float: right;
+		}
+
+
+		.glyph-demo-container {
+			float: right;
+			margin: 1.5em 2.5em 0 0
+		}
+
+		.glyph-container {
+			width: 94px;
+			height: 60px;
+		}
+
+		.glyph {
+			background-color: #bdbdbd;
+			opacity: 0.8;
+			border-radius: 3px;
+			font-size: 36px;
+			color: white;
+			font-family: calibri;
+			text-align: center;
+			min-width: 1em;
+			padding: 5px;
+			padding-bottom: 9px;
+			margin: 2px 2px 2px 2px;
+			float: left;
+		}
+
+		.glyph-small-wrapper {
+			margin-left: 47.5%;
+			margin-bottom: 0.5em;
+			height: 40px;
+		}
+
+		.glyph-small-container {
+			min-height: 46px;
+			position: relative;
+			top: -11px;
+			text-align: center;
+		}
+
+		.glyph-small {
+			background-color: #bdbdbd;
+			opacity: 0.8;
+			border-radius: 3px;
+			font-size: 22px;
+			color: white;
+			font-family: calibri;
+			text-align: center;
+			min-width: 1em;
+			padding: 5px;
+			padding-bottom: 7px;
+			margin: 2px 2px 7px 2px;
+			display: inline-block;
+		}
+
+		.glyph-left {
+			float: left;
+		}
+
+		.glyph-right {
+			float: right;
+		}
+
+		.glyph-name-container {
+ 			text-align: center;
+		}
+
+		.glyph-name {
+			position: relative;
+			top: 10px;
+			background-color: #bdbdbd; 
+			border-radius: 3px; 
+			height: 50px; 
+			margin: auto;
+			padding: 5px 11px 6px 11px;
+			font-size: 18px;
+			font-family: calibri;
+			color: white;
+		}
+
+		.gesture-button {
+			height: 39px;
+			margin-bottom: 0.5em;
+			margin-right: 0.5em;
+			position:relative;
+			top: -4px;
+			border-radius: 4px;
+			border: 1px #afafaf solid;
+			font-family: calibri;
+			color: #ffffff;
+			font-size: 16px;
+			background-color: #afafaf;
+			padding: 4px 8px 5px 8px;
+			text-decoration: none;
+		}
+
+		.gesture-button:hover, .active {
+			background: #0080FF;
+			opacity: 0.7;
+			border-color: #0080FF;
+			text-decoration: none;
+		}
+
+		.status-container {
+			min-height: 1.5em;
+		}
+
+		#status {
+			text-align: center;
+			display: none;
+		}
+
+		#gestsCanvas {
+			position: fixed;
+			left : 0px;
+			top : 0px;
+			z-index : 9999;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- <div class="glyphContainer">
+			<div class="" id="glyphContainer">
+					<div class="glyph">↓</div>
+					<div class="glyph">R</div>
+					<div class="glyph">U</div>
+			</div>
+			<div class="glyphNameContainer">
+				<span class="glyphName">Go to right tab</span>
+			</div>
+		</div> -->
+		<div class="header">
+			<h2>Minimal mouse gestures extension</h2>
+		</div>
+		<div class="content">
+			<div class="status-container">
+
+				<div id="status">Saved</div>
+
+			</div>
+			<form class="settings-form" id="settings-form">
+
+					<!-- Path -->
+					<div class="settings-row">
+						<div class="settings-name">Path:</div>
+						<div class="settings-value">
+							<div class="settings-value-primary">
+								<input type="checkbox" name="path-should-draw" id="path-should-draw" checked="checked" class="input-type-a">
+								<label for="path-should-draw">Show path</label>
+							</div>
+
+							<div class="settings-value-primary">
+								<input type="color" name="path-color" id="path-color" value="#0080FF" class="input-type-a">
+								<label for="path-color">Color</label>
+							</div>
+
+							<div class="settings-value-primary">
+								<input type="number" min="2" name="path-width" id="path-width" value="4" class="input-type-a">
+								<label for="path-width">Width</label>
+							</div>
+
+							<div class="settings-value-primary">
+								<input type="range" min="0" max="100" name="path-opacity" id="path-opacity" value="70" class="input-type-a">
+								<label for="path-opacity">Opacity</label>
+							</div>
+						</div>
+
+						<!-- Demonstration of current path settings -->
+						<div class="path-demo">
+							<canvas id="path-canvas" width="200" height="150">
+							</canvas>
+						</div>
+					</div>
+
+					<!-- Glyphs -->
+					<div class="settings-row">
+						<div class="settings-name">Glyphs:</div>
+						<div class="settings-value">
+							<div class="settings-value-primary">
+								<input type="checkbox" name="glyph-should-draw" id="glyph-should-draw" checked="checked" class="input-type-a">
+								<label for="glyph-should-draw">Show glyphs</label>
+							</div>
+							<div class="settings-value-primary">
+								<input type="checkbox" name="glyph-should-draw-name" id="glyph-should-draw-name" checked="checked" class="input-type-a">
+								<label for="glyph-should-draw-name">Show gesture name</label>
+							</div>
+							<div class="settings-value-primary">
+								<input type="color" name="glyph-background-color" id="glyph-background-color" value="#bdbdbd" class="input-type-a">
+								<label for="glyph-background-color">Background color</label>
+							</div>
+							<div class="settings-value-primary">
+								<input type="color" name="glyph-font-color" id="glyph-font-color" value="#ffffff" class="input-type-a">
+								<label for="glyph-font-color">Font color</label>
+							</div>
+							<div class="settings-value-primary">
+								<input type="range" min="0" max="100" name="glyph-opacity" id="glyph-opacity" value="70" class="input-type-a">
+								<label for="glyph-opacity">Opacity</label>
+							</div>
+
+							<div class="settings-value-primary">
+								<input type="checkbox" name="glyph-arrow-mode" id="glyph-arrow-mode" checked="checked" class="input-type-a">
+								<label for="glyph-arrow-mode">Draw glyphs with arrows</label>
+							</div>
+
+						</div>
+
+						<!-- Demonstration of current glyph settings -->
+						<div class="glyph-demo-container">
+							<div class="glyph-container">
+								<div class="glyph glyph-left" id="demo-glyph-left" style="visibility: hidden;">→</div>
+								<div class="glyph glyph-right" id="demo-glyph-right" style="visibility: hidden;">↑</div>
+								<!-- <div class="glyph">↓</div>
+								<div class="glyph">←</div> -->
+							</div>
+							<div class="glyph-name-container">
+								<span class="glyph-name" id="demo-glyph-name" style="visibility: hidden;">next tab</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Misc -->
+					<div class="settings-row">
+						<div class="settings-name">Smooth scroll:</div>
+						<div class="settings-value">
+							<div class="settings-value-primary">
+								<input type="checkbox" name="smooth-scroll" id="smooth-scroll" checked="checked" class="input-type-a">
+								<label for="smooth-scroll">Enable smooth scroll</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="settings-row">
+						<div class="settings-name">Sync:</div>
+						<div class="settings-value">
+							<div class="settings-value-primary">
+								<input type="checkbox" name="should-sync" id="should-sync" class="input-type-a">
+								<label for="should-sync">Sync settings through chrome user account</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Gestures -->
+			</form>
+		</div>
+	</div>
+	<!-- // <script src="jquery-2.1.4.min.js"></script> -->
+	<script src="mousetracker.js"></script>
+	<script src="settings.js"></script>
+	<!-- 
+		<button>Undo all changes</button> 
+	-->
+</body>
+</html>
+
+

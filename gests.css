@@ -1,0 +1,51 @@
+#gestsCanvas {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 9999;
+}
+
+#gestsGlyphWrapper {
+	z-index: 9999;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    width: auto;
+    -webkit-transfor: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.gestsGlyph {
+	background-color: #bdbdbd;
+	border-radius: 4px;
+	font-size: 36px;
+	color: white;
+	font-family: calibri;
+	text-align: center;
+	min-width: 36px;
+	padding: 5px;
+	padding-bottom: 9px;
+	margin: 2px 2px 2px 2px;
+	float: left;
+}
+
+#gestsGlyphNameContainer {
+	text-align: center;
+}
+
+#gestsGlyphName {
+	position: relative;
+	top: 10px;
+	/*background-color: #aaddff; */
+	background-color: #bdbdbd; 
+	border-radius: 3px; 
+	height: 50x; 
+	margin: auto;
+	padding: 5px 11px 6px 11px;
+	font-size: 18px;
+	font-family: calibri;
+	color: white;
+}
